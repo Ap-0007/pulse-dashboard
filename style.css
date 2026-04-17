@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;700&family=Space+Grotesk:wght@300;400;700&display=swap');
+
+:root {
+    --green: #00ff88;
+    --amber: #ffcc00;
+    --red: #ff3300;
+    --blue: #0088ff;
+    --bg: #0a0e14;
+    --glass: rgba(255, 255, 255, 0.02);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --font-main: 'Outfit', sans-serif;
+    --font-mono: 'Space Grotesk', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: #fff;
+    font-family: var(--font-main);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Background pulse effect */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+    animation: metabolic-pulse 5s ease-in-out infinite;
+}
+
+@keyframes metabolic-pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+#app-container {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 400px 1fr 350px;
+    grid-template-rows: 80px 1fr 200px;
+    padding: 25px;
+    gap: 20px;
+}
+
+/* Header */
+header {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 0 30px;
+}
+
+.logo {
+    font-family: var(--font-mono);
+    font-size: 20px;
+    letter-spacing: 5px;
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.heart-rate {
+    width: 40px;
+    height: 20px;
+    stroke: var(--green);
+    stroke-width: 2;
+    fill: none;
+    stroke-dasharray: 100;
+    animation: ekg-line 2s linear infinite;
+}
+
+@keyframes ekg-line {
+    to { stroke-dashoffset: -200; }
+}
+
+/* Sidebar: Project Vitals */
+#vitals-panel {
+    grid-row: 2 / 4;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.section-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    opacity: 0.5;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.project-vital {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.project-vital:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateX(5px);
+}
+
+.vital-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.project-name {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.vitality-badge {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--green);
+    background: rgba(0, 255, 136, 0.1);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.vitality-badge.low { color: var(--red); background: rgba(255, 51, 0, 0.1); }
+.vitality-badge.med { color: var(--amber); background: rgba(255, 204, 0, 0.1); }
+
+.vital-stats {
+    display: flex;
+    gap: 20px;
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+/* Main Panel: Activity Stream */
+main {
+    grid-row: 2 / 3;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.activity-chart {
+    width: 100%;
+    height: 300px;
+    margin-top: 50px;
+}
+
+/* Task Wall (TODOs) */
+#task-wall {
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 25px;
+    overflow-y: auto;
+}
+
+.task-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.task-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    background: var(--blue);
+    padding: 2px 6px;
+    border-radius: 3px;
+    height: fit-content;
+}
+
+.task-text {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.task-meta {
+    font-size: 9px;
+    opacity: 0.4;
+    margin-top: 4px;
+}
+
+/* Right Sidebar: Environment Stats */
+#env-sidebar {
+    grid-row: 2 / 4;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.env-metric {
+    margin-bottom: 30px;
+}
+
+.metric-label {
+    font-size: 11px;
+    opacity: 0.5;
+    margin-bottom: 10px;
+}
+
+.metric-val {
+    font-size: 28px;
+    font-weight: 300;
+}
+
+.system-log {
+    margin-top: auto;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--glass-border);
+    padding: 15px;
+    border-radius: 10px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--green);
+    height: 150px;
+    overflow-y: auto;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 4px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--green);
+}

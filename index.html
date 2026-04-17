@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT PULSE // LIFE SUPPORT</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <svg class="heart-rate" viewBox="0 0 100 40">
+                    <polyline points="0,20 20,20 25,5 35,35 40,20 100,20" />
+                </svg>
+                PULSE // WORKSPACE_MONITOR
+            </div>
+            <div style="font-family: 'Space Grotesk'; font-size: 11px; opacity: 0.5;">
+                STATUS: <span style="color: var(--green);">MONITORING_ACTIVE</span> // v1.0.4
+            </div>
+        </header>
+
+        <!-- Sidebar: Vitals -->
+        <aside id="vitals-panel">
+            <div class="section-label">PROJECT_VITALS</div>
+            <div id="project-list">
+                <!-- Project cards injected here -->
+            </div>
+        </aside>
+
+        <!-- Main Display: Activity -->
+        <main>
+            <div class="section-label">METABOLIC_ACTIVITY</div>
+            <div style="font-size: 32px; font-weight: 300; margin-top: 10px;" id="focused-project">STANDING BY</div>
+            <div style="font-size: 12px; opacity: 0.5;" id="project-meta">SELECT A SYSTEM TO VIEW TELEMETRY</div>
+            
+            <div class="activity-chart" id="activity-chart">
+                <!-- Activity visualization -->
+            </div>
+
+            <div style="position: absolute; bottom: 30px; left: 30px; display: flex; gap: 40px;">
+                <div>
+                    <div class="section-label">COMMIT_VELOCITY</div>
+                    <div style="font-size: 20px;" id="stat-commits">--</div>
+                </div>
+                <div>
+                    <div class="section-label">LAST_HEARTBEAT</div>
+                    <div style="font-size: 20px;" id="stat-last">--</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Task Wall (TODOs) -->
+        <section id="task-wall">
+            <div class="section-label">FRAGMENTED_TASKS (TODO_LOG)</div>
+            <div id="todo-list">
+                <!-- TODOs injected here -->
+            </div>
+        </section>
+
+        <!-- Right Side: Env Stats -->
+        <aside id="env-sidebar">
+            <div class="section-label">LOCAL_ENVIRONMENT</div>
+            
+            <div class="env-metric">
+                <div class="metric-label">TOTAL_SYSTEM_TODOS</div>
+                <div class="metric-val" id="total-todos">0</div>
+            </div>
+
+            <div class="env-metric">
+                <div class="metric-label">ACTIVE_THREADS</div>
+                <div class="metric-val" id="active-threads">--</div>
+            </div>
+
+            <div class="system-log" id="system-log">
+                <div style="opacity: 0.5; margin-bottom: 5px;">[00:00:00] Initiating system scan...</div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
